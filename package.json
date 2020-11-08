@@ -1,0 +1,12 @@
+{
+  "name": "myprojects_nodejs_sqlite",
+  "version": "1.0.0",
+  "description": "A description, languages, url, and git link of my projects",
+  "main": "ìndex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "author": "H.BOUDAOUD",
+  "license": "ISC"
+}
