@@ -71,6 +71,33 @@ with
 ```
 Build and run project with 
 
-```
+```shell script
 npm start
+```
+
+### Monitor and simultaneous commands
+#### nodemon package
+This package is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected.
+```shell script
+npm install --save-dev nodemon
+
+```
+#### concurrently package
+To run multiple commands concurrently
+```shell script
+npm install --save-dev concurrently
+
+```
+#### Configuration
+At scripts in package.json, add
+```
+    "dev": "concurrently \"tsc --watch\" \"nodemon build/index.js\""
+```
+To improve the presentation of the terminal by adding flags and colors 
+```
+    "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon build/index.js\""
+```
+#### Run dev mode
+```shell script
+ npm run dev
 ```
