@@ -44,20 +44,20 @@ At scripts in package.json, add `"tsc": "tsc" ` And execute : `npm run tsc -- --
 ##### Configure manually
 Create 
 - the file `tsconfig.json` with the following content
-```
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "outDir": "build",
-    "target": "es6",
-    "strict": true
-  },
-  "include": [
-    "src/**/*"
-  ]
-}
-```
+    ```
+    {
+      "compilerOptions": {
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "outDir": "build",
+        "target": "es6",
+        "strict": true
+      },
+      "include": [
+        "src/**/*"
+      ]
+    }
+    ```
 - the file `src/index.ts` 
 
 #### Run project
@@ -101,3 +101,56 @@ To improve the presentation of the terminal by adding flags and colors
 ```shell script
  npm run dev
 ```
+### Unit tests `Jest`
+#### Install
+Jest is a JavaScript testing framework that works with projects using: Babel, TypeScript, Node, React, Angular, Vue and more!
+````shell script
+npm i --save-dev jest @types/jest ts-jest
+````
+#### Config
+Create 
+- the file `jest.config.json` with the following content
+    ```
+    module.exports = {
+        transform: {
+            '^.+\\.ts$': 'ts-jest'
+        },
+        moduleFileExtensions: [
+            'js',
+            'ts'
+        ],
+        testMatch: [
+            '**/test/**/*.test.(ts|js)'
+        ],
+        testEnvironment: 'node'
+    }
+    
+    ```
+- the file `src/sum.ts`  
+    -  example the following content
+        ```
+        function sum(a:number, b:number):number {
+            return a + b;
+        }
+        module.exports = sum;
+        
+        
+        ```
+- the file test `test/sum.test.ts` :
+    -  example the following content
+        ```
+        const sum = require('../src/sum')
+        
+        describe('sum', ()=>{
+            it('should sum', function () {
+                expect(sum(7,3)).toBe(10);
+            });
+        })
+        
+        ```
+#### Run 
+````shell script
+npm run test
+# Or Monitor test with
+npm run test-watch
+````
