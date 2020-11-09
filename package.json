@@ -9,6 +9,10 @@
     "dev": "concurrently -k -n \"Typescript,Node\" -p \"[{name}]\" -c \"blue,green\" \"tsc --watch\" \"nodemon build/index.js\""
   },
   "author": "H.BOUDAOUD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h-boudaoud/myProjects_nodeJs_Sqlite.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^14.14.6",
