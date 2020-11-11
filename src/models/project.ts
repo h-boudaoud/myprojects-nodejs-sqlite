@@ -73,12 +73,24 @@ export class Project {
     }
 
     addLanguage(value: string | string[]) {
-        //TODO: implement this code!
+
+        if ( typeof value ==='string' && value.length > 0 && !this._languages.includes(value)) {
+            this._languages.push(value);
+        }else if(value && Array.isArray(value) && value.length > 0){
+            value.forEach((item)=>{
+                if (item.length > 0 && !this._languages.includes(item)) {
+                    this._languages.push(item);
+                }
+            })
+        }
         return this;
     }
 
     removeLanguage(value: string) {
-        //TODO: implement this code!
+        if (this._languages.includes(value)) {
+            let index = this._languages.indexOf(value);
+            this._languages.splice(index, 1);
+        }
         return this;
 
     }
@@ -86,8 +98,13 @@ export class Project {
 
 
     toJSON() {
-        let json = {};
-        //TODO: implement this code!
-        return json;
+        return {
+            id: this._id || null,
+            name: this._name,
+            gitRepository: this._gitRepository,
+            buildUrl: this._buildUrl,
+            languages: this._languages,
+            description: this._description || null,
+        };
     }
 }
