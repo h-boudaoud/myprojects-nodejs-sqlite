@@ -154,3 +154,71 @@ npm run test
 # Or Monitor test with
 npm run test-watch
 ````
+### Web application
+####  express package
+Express is a minimalist, flexible and fast web infrastructure for Node.js
+````shell script
+npm i -D express
+````
+#### Without using Router
+In index.ts, add : 
+```ts
+let app = require('express')();
+let port = 3001
+app.listen(port, (err: any) => {
+    if (err) console.log(err);
+    console.log("Server listening on PORT", port);
+    console.log("Host : http://localhost:"+port);
+});
+
+
+app.get("/", function(req: any, res: { send: (arg0: string) => void; }) {
+    res.send("Hello word");
+});
+app.post("/", function(req: any, res: { send: (arg0: string) => void; }) {
+    res.send("This is a post request!!\n");
+});
+
+// define page path with parameters
+app.get('/pathname/:param1/:param2', function(req: any, res: { send: (arg0: string) => void; }) {
+    //
+    res.send('pathname param1: '+req.params.param1+', param2 : '+req.params.param2);
+});
+```
+
+#### Using the Router
+In addition to the code above add to index.ts
+```ts
+// define project page
+import {Router} from "./routers/project.router";
+app.use('/project', ProjectRouter);
+
+```
+in `/src/routers/project.router.js`, add :
+```ts
+const express = require('express');
+export const Router = express.Router();
+
+Router.route('/')
+    .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        next();
+    })
+    .get((req: any, res: { end: (arg0: string) => void; }, next: any) => {
+        res.end('When a GET request is made, then this '
+            + 'is the response sent to the client!');
+    })
+    .post((req: any, res: { end: (arg0: string) => void; }, next: any) => {
+        res.end('When a POST request is made, then this '
+            + 'is the response sent to the client!');
+    })
+    .put((req: any, res: { end: (arg0: string) => void; }, next: any) => {
+        res.end('When a PUT request is made, then this '
+            + 'is the response sent to the client!');
+    })
+    .delete((req: any, res: { end: (arg0: string) => void; }, next: any) => {
+        res.end('When a DELETE request is made, then this '
+            + 'is the response sent to the client!');
+    });
+```
