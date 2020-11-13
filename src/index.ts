@@ -1,8 +1,15 @@
 // @ts-ignore
 console.log('Hello word')
 
-let app = require('express')();
-let port = 3001
+const app = require('express')();
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+let port = 3001;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
+
 app.listen(port, (err: any) => {
     if (err) console.log(err);
     console.log("Server listening on PORT", port);

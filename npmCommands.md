@@ -5,7 +5,7 @@ To create this project, I used the following commands
 ```
 npm init
 ``` 
-##### Add the file ` ìndex.ts` at the project, 
+##### Add the file `/ìndex.js` at the project, 
 optional: at scripts in package.json, add 
 
 ```
@@ -18,7 +18,7 @@ node .
 npm start
 ```
 ### The project with TypeScript
-
+delete `/ìndex.js`
 #### TypeScript package
 ```
 npm install --save-dev typescript
@@ -38,7 +38,7 @@ note: it is possible to install both packages with the command
 npm install --save-dev typescript @types/node
 
 ```
-#### Typescript configuration file : `tsconfig.json`
+#### Typescript configuration file : `/tsconfig.json`
 ##### run with "tsc"
 At scripts in package.json, add `"tsc": "tsc" ` And execute : `npm run tsc -- --init`
 ##### Configure manually
@@ -58,10 +58,10 @@ Create
       ]
     }
     ```
-- the file `src/index.ts` 
+- the file `/src/index.ts` 
 
 #### Run project
-At scripts in package.json, change
+At scripts in `/package.json`, change
 ```
 "start": "node ."   // Or "start": "node index.js"
 ``` 
@@ -89,7 +89,7 @@ npm install --save-dev concurrently
 
 ```
 #### Configuration
-At scripts in package.json, add
+At scripts in `/package.json`, add
 ```
     "dev": "concurrently \"tsc --watch\" \"nodemon build/index.js\""
 ```
@@ -109,7 +109,7 @@ npm i --save-dev jest @types/jest ts-jest
 ````
 #### Config
 Create 
-- the file `jest.config.json` with the following content
+- the file `/jest.config.json` with the following content
     ```
     module.exports = {
         transform: {
@@ -126,7 +126,7 @@ Create
     }
     
     ```
-- the file `src/sum.ts`  
+- the file `/src/sum.ts`  
     -  example the following content
         ```
         function sum(a:number, b:number):number {
@@ -136,7 +136,7 @@ Create
         
         
         ```
-- the file test `test/sum.test.ts` :
+- the file test `/test/sum.test.ts` :
     -  example the following content
         ```
         const sum = require('../src/sum')
@@ -157,11 +157,11 @@ npm run test-watch
 ### Web application
 ####  express package
 Express is a minimalist, flexible and fast web infrastructure for Node.js
-````shell script
+```shell script
 npm i -D express
-````
+```
 #### Without using Router
-In index.ts, add : 
+In `/src/index.ts`, add : 
 ```ts
 let app = require('express')();
 let port = 3001
@@ -187,14 +187,14 @@ app.get('/pathname/:param1/:param2', function(req: any, res: { send: (arg0: stri
 ```
 
 #### Using the Router
-In addition to the code above add to index.ts
+In addition to the code above add to `/src/index.ts`
 ```ts
 // define project page
 import {Router} from "./routers/project.router";
 app.use('/project', ProjectRouter);
 
 ```
-in `/src/routers/project.router.js`, add :
+in `/src/routers/project.router.ts`, add :
 ```ts
 const express = require('express');
 export const Router = express.Router();
@@ -222,3 +222,17 @@ Router.route('/')
             + 'is the response sent to the client!');
     });
 ```
+
+More information on: https://www.geeksforgeeks.org/routing-path-for-expressjs/?ref=rp
+
+#### "put" and "delete" methods
+Method-override package lets use HTTP verbs such as PUT or DELETE in places where the client doesn’t support it.
+```shell script
+npm i -D method-override
+```
+and  in `/src/index.ts`, add :
+```ts
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+```
+more information on : http://expressjs.com/en/resources/middleware/method-override.html
