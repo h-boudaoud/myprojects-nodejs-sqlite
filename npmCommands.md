@@ -30,13 +30,12 @@ npm i -D typescript
 
 #### @types/node package
 This package contains type definitions for Node.js
-```yaml
+```shell script
 npm i --save-dev @types/node
 ```
 note: it is possible to install both packages with the command
-```
+```shell script
 npm install --save-dev typescript @types/node
-
 ```
 #### Typescript configuration file : `/tsconfig.json`
 ##### run with "tsc"
@@ -158,7 +157,7 @@ npm run test-watch
 ####  express package
 Express is a minimalist, flexible and fast web infrastructure for Node.js
 ```shell script
-npm i -D express
+npm i -S express
 ```
 #### Without using Router
 In `/src/index.ts`, add : 
@@ -189,8 +188,8 @@ app.get('/pathname/:param1/:param2', function(req: any, res: { send: (arg0: stri
 #### Using the Router
 In addition to the code above add to `/src/index.ts`
 ```ts
-// define project page
-import {Router} from "./routers/project.router";
+// define projectViews page
+import {Router} from "./routers/projectViews.router";
 app.use('/project', ProjectRouter);
 
 ```
@@ -228,7 +227,7 @@ More information on: https://www.geeksforgeeks.org/routing-path-for-expressjs/?r
 #### "put" and "delete" methods
 Method-override package lets use HTTP verbs such as PUT or DELETE in places where the client doesn’t support it.
 ```shell script
-npm i -D method-override
+npm i -S method-override
 ```
 and  in `/src/index.ts`, add :
 ```ts
