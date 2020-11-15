@@ -4,6 +4,7 @@ import {ProjectIndex} from "../views/project";
 import {ProjectCreate} from "../views/project/create";
 import {ProjectDetails} from "../views/project/details";
 import {ProjectEdit} from "../views/project/edit";
+import {html} from "../views/Layout";
 
 
 const express = require('express');
@@ -37,7 +38,8 @@ let title: string;
 //             + 'is the response sent to the client!');
 //     });
 
-// path /project
+
+// /project/
 Router.route('/')
     .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
         res.statusCode = 200;
@@ -53,6 +55,7 @@ Router.route('/')
     })
 
 
+// /project/new
 Router.route('/new')
     .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
         res.statusCode = 200;
@@ -85,7 +88,7 @@ Router.route('/new')
         ));
     })
 
-
+// /project/id
 Router.route('/:id')
     .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
         id = req.params.id;
@@ -132,6 +135,7 @@ Router.route('/:id')
 ;
 
 
+// /project/id/edit
 Router.route('/:id/edit')
     .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
         id = req.params.id;
@@ -204,22 +208,3 @@ function ProjectResponse(json: any, id?: number): Project {
     );
 }
 
-
-function html(title: string, body: string, message?: { type: string, content: string }|null) {
-    // console.log('body : ', body)
-    return '' +
-        '\n<html>' +
-        '\n   <head>' +
-        '\n       <meta charset="utf-8">' +
-        '\n       <title>' + title + '</title>' +
-        '\n   </head>' +
-        '\n   <body>' +
-        '\n       <h1>' + title + '</h1>' +
-        (message ? '\n       <div class="' + message.type + '">' + message.content + '</div>' : '') +
-        '\n       <section>' +
-        '\n           ' + body +
-        '\n       </section>' +
-        '\n   </body>' +
-        '\n</html>'
-        ;
-}

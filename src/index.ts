@@ -1,7 +1,10 @@
 // @ts-ignore
+import {html} from "./views/Layout";
+
 console.log('Hello word')
 
-const app = require('express')();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 let port = 3001;
@@ -9,6 +12,8 @@ let port = 3001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
+app.use('/asset', express.static('public'));
+//asset
 
 app.listen(port, (err: any) => {
     if (err) console.log(err);
@@ -18,7 +23,7 @@ app.listen(port, (err: any) => {
 
 
 app.get("/", function(req: any, res: { send: (arg0: string) => void; }) {
-    res.send("Hello word");
+    res.send(html('Home', 'Hello word'));
 });
 app.post("/", function(req: any, res: { send: (arg0: string) => void; }) {
     res.send("This is a post request!!\n");

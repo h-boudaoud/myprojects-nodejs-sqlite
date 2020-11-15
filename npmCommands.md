@@ -235,3 +235,10 @@ const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 ```
 more information on : http://expressjs.com/en/resources/middleware/method-override.html
+
+#### Use static files 
+create an folder `/public`, and in `/src/index.ts` add : 
+```ts
+app.use('/asset', express.static('public'));
+```
+To acces at static files `/public/floder/file` use `/asset/folder/file` in the html code. 

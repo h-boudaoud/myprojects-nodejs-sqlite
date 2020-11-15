@@ -3,7 +3,7 @@ import {ProjectDetails} from "./details";
 
 export function ProjectIndex(): string {
     let view: string = '';
-    projects.forEach((p) => view += '\n'+ProjectDetails(p))
+    projects.forEach((p) => view += '\n'+ProjectDetails(p,'list'))
     view += '\n   <script>' +
         '\n           console.log("projects :",' + JSON.stringify(projects) + ')' +
         '\n       </script>'

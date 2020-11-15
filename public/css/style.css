@@ -1,0 +1,191 @@
+:root{
+    overflow: hidden;
+    padding: .1rem;
+    margin: 0;
+    height: 100vh;
+    /*background: red;*/
+    font-size: 1rem;
+}
+html{
+    height: 100vh;
+    color: white;
+    margin: 0;
+    background-color: #333;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+body{
+    height: 100vh;
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6{
+    text-align: center;
+}
+
+header{
+    position: relative;
+    top:0;
+    margin: 0;
+    padding: 0 1rem;
+    background-color: #333;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+header nav li {
+    float: left;
+}
+
+header nav li a, .dropbtn {
+    display: inline-block;
+    text-align: center;
+    padding: .5rem 1rem;
+    margin: 2px;
+    text-decoration: none;
+    color:#f1f1f1;
+    border: .1rem solid #f1f1f1;
+    border-radius: 10px/5px;
+    background-color: #333;
+}
+
+header nav li a:hover, .dropdown:hover .dropbtn {
+    background-color: #f9f9f9;
+    color : #333;
+    border: .1rem solid #333;
+    border-radius: 10px/5px;
+}
+
+header nav li.dropdown {
+    display: inline-block;
+}
+
+header nav .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+header nav .dropdown-content a {
+    padding: .5rem 1rem;
+    margin: 0;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+header nav .dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+header nav .dropdown:hover .dropdown-content {
+    display: block;
+}
+section.container{
+    background-color: #fff;
+    overflow: auto;
+    height: 75vh;
+    padding: 1rem;
+    margin: 0 1rem;
+    color:#333;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+section.container > section{
+    background-color: #fff;
+}
+
+.form label{
+    display: inline-block;
+    width: 20vw;
+    text-align: right;
+    margin: 1rem 0;
+}
+
+.form input, form textarea{
+    vertical-align: text-top;
+     display: inline-block;
+     width: 60vw;
+ }
+
+form button[type="submit"], a.edit, a.btn{
+    padding: 3px 2.5rem;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px/5px;
+}
+
+.form button[type="submit"]{
+    padding: 10px 2.5rem;
+    margin: 1rem;
+    margin-left: 20vw;
+    color:#f1f1f1;
+    border: .1rem solid #f1f1f1;
+    background-color: #333;
+}
+.delete{
+    border: .1rem solid red !important;
+    color:red !important;
+    background-color: rgba(250,0,0,.2) !important;
+}
+.project{
+    padding: 0;
+    margin: .25rem 0;
+    background-color: #f1f1f1;
+
+}
+.project div {
+    margin: 0;
+    padding: 1rem;
+    border: 1px dashed #333;
+    border-top: 0;
+    //border-bottom: 0;
+    background-color: #f1f1f1;
+
+}
+
+.project h3{
+    margin: 0;
+    padding: .5rem 0 ;
+    background-color: #333;
+    color: #f1f1f1;
+
+}
+
+a.edit{
+    border: .1rem solid rgb(50,0,200);
+    color: rgb(50,0,200);
+    text-decoration: none;
+    background-color: rgba(50,0,200,.2);
+}
+
+a.btn{
+
+    border: .1rem solid rgb(30,30,30);
+    color:#333;
+    text-decoration: none;
+    background-color: rgba(30,30,30,.2);
+
+}
+
+div.error, div.success, div.info{
+    border : 1px solid;
+    padding: 10px 2rem;
+}
+
+div.error{
+    border-color : red;
+    background-color: rgba(255,0,0,.2);
+    color : red;
+}
+
+div.success{
+    border-color : green;
+    background-color: rgba(0,255,0,.2);
+    color : green;
+}
+

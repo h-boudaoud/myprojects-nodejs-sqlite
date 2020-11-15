@@ -2,7 +2,7 @@ import {Project} from "../../models/project";
 
 export function ProjectForm(project?: Project, buttonLabel?:string): string {
     return '' +
-        '<form action="#" method="post">' +
+        '<form action="#" method="post" class="form">' +
         // '   <div>' +
         // '       <label for="id">Id :</label>' +
         // '       <input type="text" id="id" name="id" value="'+(project?project.id:'')+'">' +
@@ -27,7 +27,9 @@ export function ProjectForm(project?: Project, buttonLabel?:string): string {
         '       <label for="description">description :</label>' +
         '       <textarea id="description" name="description">'+(project?project.description:'')+'</textarea>' +
         '   </div>' +
-        '   <button type="submit">'+(buttonLabel||'Save')+'</button>'+
+        '   <div>'+
+        '       <button type="submit">'+(buttonLabel||'Save')+'</button>'+
+        '   </div>'+
         '</form>' +
         ''
     ;
