@@ -51,16 +51,32 @@ import {Router as ProjectRouter} from "./routers/project.router";
 app.use('/project', ProjectRouter);
 
 // Sqlite3
-import * as sqlite from 'sqlite3';
-
-const sqlite3 = sqlite.verbose();
-const dbPath = "./src/data/myDatabase.sqlite3.db";
-let db = new sqlite3.Database(dbPath, (err) => {
-    let response = "Sqlite success : Successful connection to database 'myDatabase.Sqlite3.db'";
-    if (err) {
-        response = 'Sqlite error : ', err.message;
-        //throw err;
+import {SqliteDatabase} from "./dataAccess/sqlite";
+const sqliteDatabase = new SqliteDatabase();
+const sqliteDatabase2 = new SqliteDatabase("./src/data/myDatabase_2.sqlite3.db");
+const sqlCreateTable =`CREATE TABLE If NOT EXISTS project(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description TEXT
+    );`;
+sqliteDatabase2.CreateTable(sqlCreateTable)
+const sqlInsert = `INSERT INTO project (id,name,description) 
+    VALUES
+        (1,'name 1','Test description'),
+        (2,'name 2','Test description'),
+        (3,'name 3',null),
+        (4,'name 4','Test description'),
+        (5,'name 5','Test description'),
+        (6,'name 5',null)
+    ;`;
+sqliteDatabase2.database.run(sqlInsert,(err)=>{
+    let response = "Sqlite Insert success : Successful Insert values to database "
+    if(err){
+        response = "Sqlite Insert error : " + err.message;
     }
-    console.log(response);
-});
+    console.log(response)
+    }
+);
+sqliteDatabase2.DestroyTable('project');
+
 

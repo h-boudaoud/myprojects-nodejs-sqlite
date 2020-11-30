@@ -335,7 +335,7 @@ const dbPath = "./src/data/myDatabase.sqlite3.db";
 let db = new sqlite3.Database(dbPath, (err) => {
     let response = "Successful connection to database 'myDatabase.Sqlite3.db'";
     if (err) {
-        response = 'Sqlite error : ', err.message;
+        response = 'Sqlite error : ' + err.message;
         // throw err;
     }
     console.log(response);
