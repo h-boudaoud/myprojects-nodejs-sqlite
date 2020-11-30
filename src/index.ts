@@ -50,5 +50,17 @@ app.get('/about', function (req: any, res: { send: (arg0: string) => void; }) {
 import {Router as ProjectRouter} from "./routers/project.router";
 app.use('/project', ProjectRouter);
 
+// Sqlite3
+import * as sqlite from 'sqlite3';
 
+const sqlite3 = sqlite.verbose();
+const dbPath = "./src/data/myDatabase.sqlite3.db";
+let db = new sqlite3.Database(dbPath, (err) => {
+    let response = "Sqlite success : Successful connection to database 'myDatabase.Sqlite3.db'";
+    if (err) {
+        response = 'Sqlite error : ', err.message;
+        //throw err;
+    }
+    console.log(response);
+});
 
