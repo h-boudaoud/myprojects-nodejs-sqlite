@@ -37,6 +37,15 @@ app.get('/pathname/:param1/:param2', function(req: any, res: { send: (arg0: stri
     res.send(html('Home', body));
 });
 
+// Add markdown file to view
+import {markdownFileToHTML} from "./tools/showdown";
+app.get('/about', function (req: any, res: { send: (arg0: string) => void; }) {
+    const body = `
+                <head><link rel="stylesheet" href="/asset/css/markdown.css"/></head>
+                <div class="markdown">${markdownFileToHTML('src/views/about/about.md')}</div>`;
+    res.send(html('About', body));
+})
+
 // Using the Router : define project views
 import {Router as ProjectRouter} from "./routers/project.router";
 app.use('/project', ProjectRouter);

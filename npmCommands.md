@@ -242,3 +242,34 @@ create an folder `/public`, and in `/src/index.ts` add :
 app.use('/asset', express.static('public'));
 ```
 To acces at static files `/public/floder/file` use `/asset/folder/file` in the html code. 
+
+#### Add markdown syntax or markdown file to view
+##### showdown package
+```shell script
+npm i -S showdown
+```
+
+in `/src/index.ts` add : 
+```ts
+// Convert markdown syntax to html syntax
+function markdownSyntaxToHTML(text: string ): string  {
+        const showdown = require('showdown'),
+            converter = new showdown.Converter(),
+            html = converter.makeHtml(text);
+        // console.log('markdownToHTML', html)
+        return `<div id="markdown">${html}</div>`;
+}
+
+import * as fs from "fs";
+import * as path from "path";
+app.get('/markdown', function(req: any, res: { send: (arg0: string) => void; }) {
+    //check that filename matches the path of markdown file
+    const file =path.join(__dirname,'../', filename_in_project);
+    // Convert markdown file to html syntax
+    const html = markdownSyntaxToHTML(fs.readFileSync(file, "utf8"))
+    res.send(html);
+});
+
+```
+
+Note: For maintenance and visibility the project, write your code in multiple files and export the variable.

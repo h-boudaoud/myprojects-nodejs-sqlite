@@ -17,6 +17,7 @@ export function html(title: string, body: string, message?: { type: string, cont
         '\n             <nav>' +
         '\n                 <ul>' +
         '\n                 <li><a href="/">Home</a></li>' +
+        '\n                 <li><a href="/about">About</a></li>' +
         '\n                 <li  class="dropdown">' +
         '\n                         <a href="javascript:void(0)" class="dropbtn">Projects</a>' +
         '                           <div class="dropdown-content">' +
@@ -29,13 +30,16 @@ export function html(title: string, body: string, message?: { type: string, cont
         '\n             <h1>' + title + '</h1>' +
         '\n         </header>' +
         '\n         <section class="container">' +
-        '\n             <section>' +
         (message ? '\n      <div class="' + message.type + '">' + message.content + '</div>' : '') +
+        '\n             <section>' +
         '\n                 <div>' +
         '\n                     ' + body +
         '\n                 </div>' +
         '\n            </section>' +
         '\n         </section>' +
+        '\n         <footer>' +
+        '\n             <div>My footer</div>' +
+        '\n         </footer>' +
         '\n   </body>' +
         '\n</html>'
         ;
