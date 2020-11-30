@@ -1,7 +1,7 @@
 // @ts-ignore
 import {html} from "./views/Layout";
 
-console.log('Hello word')
+console.log('Hello world')
 
 const express = require('express');
 const app = express();
@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 app.use('/asset', express.static('public'));
+app.use('/favicon.ico', express.static('public/img/favicon.ico'));
 //asset
 
 app.listen(port, (err: any) => {
@@ -23,16 +24,17 @@ app.listen(port, (err: any) => {
 
 
 app.get("/", function(req: any, res: { send: (arg0: string) => void; }) {
-    res.send(html('Home', 'Hello word'));
+    res.send(html('Home', 'Hello world'));
 });
+
 app.post("/", function(req: any, res: { send: (arg0: string) => void; }) {
     res.send("This is a post request!!\n");
 });
 
 // define page path with parameters
 app.get('/pathname/:param1/:param2', function(req: any, res: { send: (arg0: string) => void; }) {
-    //
-    res.send('pathname param1: '+req.params.param1+', param2 : '+req.params.param2);
+    const body = 'pathname param1: '+req.params.param1+', param2 : '+req.params.param2
+    res.send(html('Home', body));
 });
 
 // Using the Router : define project views

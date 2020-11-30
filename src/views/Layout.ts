@@ -9,7 +9,7 @@ export function html(title: string, body: string, message?: { type: string, cont
         '\n       <meta name="viewport" content="width=device-width"/>' +
         '\n       <meta name="viewport" content="width=device-height"/>' +
         '\n       <meta name="viewport" content="width=device-width, initial-scale=0.9">' +
-        '\n       <title>' + title + '</title>' +
+        '\n       <title>' + title + ': Project Housni BOUDAOUD</title>' +
         '\n       <link rel="stylesheet" href="/asset/css/style.css"/>' +
         '\n   </head>' +
         '\n   <body>' +
