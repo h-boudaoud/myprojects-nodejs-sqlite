@@ -1,7 +1,9 @@
+import {ProjectFakerForm} from "./project/migrationAndFaker";
+
 export function html(title: string, body: string, message?: { type: string, content: string } | null) {
     // console.log('body : ', body)
     return '' +
-        '\n<html>' +
+        '\n<html lang="en">' +
         '\n   <head>' +
         '\n       <meta charset="utf-8"><meta name="author" lang="fr" content="Housni BOUDAOUD"/>' +
         '\n       <meta name="robots" content="projects, Housni, BOUDAOUD, hboudaoud, projects-boudaoud, projects-hboudaoud"/>' +
@@ -44,7 +46,7 @@ export function html(title: string, body: string, message?: { type: string, cont
         '\n            </section>' +
         '\n         </section>' +
         '\n         <footer>' +
-        '\n             <div>My footer</div>' +
+        `\n          <div>${ProjectFakerForm('initialize project and generate fake data')}</div>`+
         '\n         </footer>' +
         '\n   </body>' +
         '\n</html>'

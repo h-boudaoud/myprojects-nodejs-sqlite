@@ -50,34 +50,35 @@ app.get('/about', function (req: any, res: { send: (arg0: string) => void; }) {
 import {Router as ProjectRouter} from "./routers/project.router";
 app.use('/project', ProjectRouter);
 
-// Sqlite3
-import {SqliteDatabase} from "./dataAccess/sqlite";
-const sqliteDatabase = new SqliteDatabase();
-// const sqliteDatabase2 = new SqliteDatabase("./src/data/myDatabase_2.sqlite3.db");
-const sqlCreateTable =`CREATE TABLE If NOT EXISTS project(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(100) NOT NULL,
-    description TEXT
-    );`;
-sqliteDatabase.DestroyTable('project');
-sqliteDatabase.CreateTable(sqlCreateTable);
 
-const sqlInsert = `INSERT INTO project (id,name,description) 
-    VALUES
-        (1,'name 1','Test description'),
-        (2,'name 2','Test description'),
-        (3,'name 3',null),
-        (4,'name 4','Test description'),
-        (5,'name 5','Test description'),
-        (6,'name 5',null)
-    ;`;
-sqliteDatabase.database.run(sqlInsert,(err: { message: string; })=>{
-    let response = "Sqlite Insert success : Successful Insert values to database "
-    if(err){
-        response = "Sqlite Insert error : " + err.message;
-    }
-    console.log(response)
-    }
-);
-
-
+//
+// // Sqlite3
+// import {SqliteDatabase} from "./dataAccess/sqlite";
+// const sqliteDatabase = new SqliteDatabase();
+// // const sqliteDatabase2 = new SqliteDatabase("./src/data/myDatabase_2.sqlite3.db");
+// const sqlCreateTable =`CREATE TABLE If NOT EXISTS project(
+//     id INTEGER PRIMARY KEY AUTOINCREMENT,
+//     name VARCHAR(100) NOT NULL,
+//     description TEXT
+//     );`;
+// sqliteDatabase.DestroyTable('project');
+// sqliteDatabase.CreateTable(sqlCreateTable);
+//
+// const sqlInsert = `INSERT INTO project (id,name,description)
+//     VALUES
+//         (1,'name 1','Test description'),
+//         (2,'name 2','Test description'),
+//         (3,'name 3',null),
+//         (4,'name 4','Test description'),
+//         (5,'name 5','Test description'),
+//         (6,'name 5',null)
+//     ;`;
+// sqliteDatabase.database.run(sqlInsert,(err: { message: string; })=>{
+//     let response = "Sqlite Insert success : Successful Insert values to database "
+//     if(err){
+//         response = "Sqlite Insert error : " + err.message;
+//     }
+//     console.log(response)
+//     }
+// );
+//
