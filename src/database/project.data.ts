@@ -27,7 +27,7 @@ for (let i = 1; i<10 ;i++)
     list.push(project)
 }
 
-export const projects = list;
+export let projects:Project[]|null = null;
 // export function AddProjects(project: any){
 //     const newProject = new Project(
 //         project.name,

@@ -53,13 +53,15 @@ app.use('/project', ProjectRouter);
 // Sqlite3
 import {SqliteDatabase} from "./dataAccess/sqlite";
 const sqliteDatabase = new SqliteDatabase();
-const sqliteDatabase2 = new SqliteDatabase("./src/data/myDatabase_2.sqlite3.db");
+// const sqliteDatabase2 = new SqliteDatabase("./src/data/myDatabase_2.sqlite3.db");
 const sqlCreateTable =`CREATE TABLE If NOT EXISTS project(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(100) NOT NULL,
     description TEXT
     );`;
-sqliteDatabase2.CreateTable(sqlCreateTable)
+sqliteDatabase.DestroyTable('project');
+sqliteDatabase.CreateTable(sqlCreateTable);
+
 const sqlInsert = `INSERT INTO project (id,name,description) 
     VALUES
         (1,'name 1','Test description'),
@@ -69,7 +71,7 @@ const sqlInsert = `INSERT INTO project (id,name,description)
         (5,'name 5','Test description'),
         (6,'name 5',null)
     ;`;
-sqliteDatabase2.database.run(sqlInsert,(err)=>{
+sqliteDatabase.database.run(sqlInsert,(err: { message: string; })=>{
     let response = "Sqlite Insert success : Successful Insert values to database "
     if(err){
         response = "Sqlite Insert error : " + err.message;
@@ -77,6 +79,5 @@ sqliteDatabase2.database.run(sqlInsert,(err)=>{
     console.log(response)
     }
 );
-sqliteDatabase2.DestroyTable('project');
 
 

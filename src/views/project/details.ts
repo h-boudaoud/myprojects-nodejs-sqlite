@@ -4,17 +4,19 @@ export function ProjectDetails (project:any,view?:string):string{
     return '\n       <div class="project">' +
         '\n          <h3>'+project.name+'</h3>' +
         '\n          <div>' +
-        '\n             <P>GIT : '+project.gitRepository+
-        '\n                 <br />URL :'+project.buildUrl+
-        '\n             </p>' +
-        '\n             <p>' +
-        '\n                  languages : <br />'+(project.languages.join(', '))+'<span class="      "></span>'+
-        '\n             </p>' +
+        '\n             <div>GIT : '+(project.gitRepository && project.gitRepository || '')+'</div>' +
+        '\n             <div>URL :'+(project.buildUrl || '')+'</div>' +
+        '\n             <div>' +
+        '\n                  languages :  <p class="inline-block">'+(project.languages?.join(', '))+'</p>'+
+        '\n             </div>' +
         '\n                    '+(
             view && view=='list'?'':''+
-        '\n             <p>' +
-        '\n                Description : <br />'+project.description.replace('\r\n','\n<br />')+'<span class="     "></span>'+
-        '\n             </p>') +
+                '\n             <div>' +
+                '\n                Description : ' +
+                '                   <p class="inline-block">'+
+                                    (project.description?project.description.replace('\r\n','\n<br />'):'')+
+                                    '</p>'+
+                '\n             </div>') +
         '\n             <footer>' +
         '\n                    '+(
             view && view=='list'
@@ -26,7 +28,7 @@ export function ProjectDetails (project:any,view?:string):string{
         '\n          </div>' +
         '\n       </div>' +
         '\n'
-    ;
+        ;
 
 }
 

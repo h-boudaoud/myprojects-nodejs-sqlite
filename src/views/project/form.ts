@@ -13,26 +13,26 @@ export function ProjectForm(project?: Project, buttonLabel?:string): string {
         '   </div>' +
         '   <div>' +
         '       <label for="languages">Language :</label>' +
-        '       <input type="text" id="languages" class="languages" name="languages" value="'+(project?project.languages.join(', '):'')+'">' +
+        '       <input type="text" id="languages" class="languages" name="languages" value="'+(project?.languages?.join(', ')||'')+'">' +
         '   </div>' +
         '   <div>' +
         '       <label for="gitRepository">Repository :</label>' +
-        '       <input type="text" id="gitRepository" name="gitRepository" value="'+(project?project.gitRepository:'')+'">' +
+        '       <input type="text" id="gitRepository" name="gitRepository" value="'+(project?.gitRepository||'')+'">' +
         '   </div>' +
         '   <div>' +
-        '       <label for="buildUrl">Url :</label>' +
-        '       <input type="text" id="buildUrl" name="buildUrl" value="'+(project?project.buildUrl:'')+'">' +
+        '       <label for="buildUrl">Url:</label>' +
+        '       <input type="text" id="buildUrl" name="buildUrl" value="'+(project?.buildUrl||'')+'">' +
         '   </div>' +
         '   <div>' +
         '       <label for="description">description :</label>' +
-        '       <textarea id="description" name="description">'+(project?project.description:'')+'</textarea>' +
+        '       <textarea id="description" name="description">'+(project?.description||'')+'</textarea>' +
         '   </div>' +
         '   <div>'+
         '       <button type="submit">'+(buttonLabel||'Save')+'</button>'+
         '   </div>'+
         '</form>' +
         ''
-    ;
+        ;
 
 }
 

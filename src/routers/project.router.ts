@@ -50,7 +50,12 @@ Router.route('/')
     })
     .get((req: any, res: { end: (arg0: string) => void; }, next: any) => {
         const message = {type:'info',content:'no records found'}
-        res.end(html(title, ProjectIndex(),projects.length==0?{type:'info',content:'no records found'}:null )
+        res.end(html(
+            title,
+            ProjectIndex(projects),
+            !projects?{type:'info',content:'Projects is null'}:
+        Number(projects?.length) > 0?null:{type:'info',content:'no records found'}
+    )
         );
     })
 
@@ -58,6 +63,8 @@ Router.route('/')
 // /project/new
 Router.route('/new')
     .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
+        // @ts-ignore
+        projects = projects || [];
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
         title = 'New project';
@@ -70,9 +77,9 @@ Router.route('/new')
     })
     .post((req: any, res: { end: (arg0: string) => void; }, next: any) => {
         // console.log(req.params.id, 'post ', req.body)
-        let newProject = ProjectResponse(req.body);
+        let newProject = ProjectResponse(req.body, projects?.length?projects?.length+1 :1);
         if (newProject) {
-            projects.push(newProject);
+            projects?.push(newProject);
             res.end(html(
                 title,
                 ProjectDetails(newProject),
@@ -92,7 +99,7 @@ Router.route('/new')
 Router.route('/:id')
     .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
         id = req.params.id;
-        project = projects.find((p) => (p.id == id));
+        project = projects?.find((p) => (p.id == id)) ||null;
         title = 'My project ' + (project ? project.name : '');
         // console.log('project', project)
         res.statusCode = 200;
@@ -106,7 +113,7 @@ Router.route('/:id')
         if (project) {
             res.end(html(title, ProjectDetails(project)));
         }
-        res.end(html('My projects', ProjectIndex(), {
+        res.end(html('My projects', ProjectIndex(projects), {
             type: 'Error',
             content: 'Project not find <br />Any project with id = ' + id
         }));
@@ -114,11 +121,11 @@ Router.route('/:id')
     })
     .delete((req: any, res: { end: (arg0: string) => void; }, next: any) => {
         if (project && req.body._token.includes(project.name)) {
-            projects.splice(projects.indexOf(project), 1);
+            projects?.splice(projects.indexOf(project), 1);
             console.log(req.params.id, 'delete :', req.body);
             res.end(html(
                 'My projects',
-                ProjectIndex(),
+                ProjectIndex(projects),
                 {type: 'success', content: 'Project ' + project.name + 'has been successfully deleted'}
             ));
         }
@@ -128,7 +135,7 @@ Router.route('/:id')
         ;
         res.end(html(
             'My projects',
-            ProjectIndex(),
+            ProjectIndex(projects),
             {type: 'error', content: message}
         ))
     })
@@ -139,7 +146,7 @@ Router.route('/:id')
 Router.route('/:id/edit')
     .all((req: any, res: { statusCode: number; setHeader: (arg0: string, arg1: string) => void; }, next: () => void) => {
         id = req.params.id;
-        project = projects.find((p) => (p.id == id));
+        project = projects?.find((p) => (p.id == id)) ||null;
         title = 'My project ' + (project ? project.name : '') + ': Edit';
         // console.log('project', project)
         res.statusCode = 200;
@@ -155,7 +162,7 @@ Router.route('/:id/edit')
         }
         res.end(html(
             'My projects',
-            ProjectIndex(),
+            ProjectIndex(projects),
             {type: 'Error', content: 'Project not find <br />Any project with id = ' + id}
         ));
 
@@ -163,10 +170,9 @@ Router.route('/:id/edit')
     .post((req: any, res: { end: (arg0: string) => void; }, next: any) => {
         // console.log(req.params.id, 'post ', req.body)
         let _Project = ProjectResponse(req.body, id);
-        if (_Project) {
-            const index = projects.indexOf(project)
-            projects[index] = _Project
-            // @ts-ignore
+        if (_Project && project && projects) {
+            const index = projects.indexOf(project);
+            projects[index] = _Project;
             res.end(html(
                 title,
                 ProjectDetails(projects[index]),
@@ -182,7 +188,7 @@ Router.route('/:id/edit')
         }
         res.end(html(
             'My projects',
-            ProjectIndex(),
+            ProjectIndex(projects),
             {type: 'Error', content: 'Project not find <br />Any project with id = ' + id}
         ));
 
@@ -204,7 +210,7 @@ function ProjectResponse(json: any, id?: number): Project {
         json.buildUrl,
         json.languages,
         json.description,
-        id ? id : projects.length + 1
+        id
     );
 }
 

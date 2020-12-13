@@ -10,6 +10,12 @@ export function html(title: string, body: string, message?: { type: string, cont
         '\n       <meta name="viewport" content="width=device-height"/>' +
         '\n       <meta name="viewport" content="width=device-width, initial-scale=0.9">' +
         '\n       <title>' + title + ': Project Housni BOUDAOUD</title>' +
+        '\n       <link rel="preconnect" href="https://fonts.gstatic.com">\n' +
+        '\n       <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet"> ' +
+        '\n       <style>' +
+        '\n             @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap");' +
+        // '               @import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");' +
+        '\n       </style>'+
         '\n       <link rel="stylesheet" href="/asset/css/style.css"/>' +
         '\n   </head>' +
         '\n   <body>' +
